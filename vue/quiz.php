@@ -19,7 +19,7 @@
 
                 <?php foreach($questions['reponse'] as $cle => $reponse) {
                 ?>
-                <input type="radio" name="<?php echo $questions['numero']; ?>" value="<?php echo $reponse['vrai']; ?>"><?php echo $reponse['reponse']; ?><br>
+                <input type="radio" name="<?php echo $questions['numero']; ?>" value="<?php echo $reponse['numero_reponse']; ?>"><?php echo $reponse['reponse']; ?><br>
                 
                  <?php
                 }

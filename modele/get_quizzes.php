@@ -17,7 +17,7 @@ function get_questions($idQuiz) {
 	$retour=array(); // on crée le tableau dans lequel on va tout stocker.
 	while ($questions = $req->fetch()) // à chaque fois qu'on sort une question, on crée une ligne du tableau avec la question etles réponses
 	{
-		$req_reponses = $bdd->prepare('SELECT reponse, vrai FROM Reponses WHERE numero_quiz=:idQuiz AND numero_question=:idQuestion'); // requête PDO pour avoir les réponses
+		$req_reponses = $bdd->prepare('SELECT numero_reponse, reponse, vrai FROM Reponses WHERE numero_quiz=:idQuiz AND numero_question=:idQuestion'); // requête PDO pour avoir les réponses
 		$req_reponses->bindParam(':idQuiz', $idQuiz, PDO::PARAM_INT);
 		$req_reponses->bindParam(':idQuestion', $questions['numero_question'], PDO::PARAM_INT);
 		$req_reponses->execute();
@@ -41,9 +41,19 @@ function get_nom($idQuiz) {
 	$req ->closeCursor();
 }
 
+function get_reponses_vraies($idQuiz) {
+	global $bdd;
+	$req = $bdd->prepare('SELECT numero_reponse, reponse FROM Reponses WHERE numero_quiz=:idQuiz AND vrai=1');
+	$req->bindParam(':idQuiz', $idQuiz, PDO::PARAM_INT);
+	$req->execute();
+	$resultats = $req->fetchAll();
+	return $resultats;
+}
+
+
 function get_resultats($idQuiz) {
 	global $bdd;
-	$req = $bdd->prepare('SELECT reponse FROM Reponses WHERE numero_quiz=:idQuiz AND vrai=1');
+	$req = $bdd->prepare('SELECT numero_question, numero_reponse, reponse, vrai FROM Reponses WHERE numero_quiz=:idQuiz');
 	$req->bindParam(':idQuiz', $idQuiz, PDO::PARAM_INT);
 	$req->execute();
 	$retour=array();

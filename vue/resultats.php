@@ -13,18 +13,28 @@
         <h1> Votre résultat </h1>
         <h2> <?php echo $pourcentage."%" ;?> </h2>
 
-        <?php foreach($reponses_u as $key => $value) {  // itération par question pour avoir la réponse.
-            ?> <h3><?php echo $questions[$key-1]['0'] ?></h3>
+        <?php foreach($questions as $key => $value) {
+        ?>
+            <p><strong><?php echo $value['question']; ?></strong></p>
+            <p>
+            <ul>
 
-            <p><?php if ($value == 1) {
-            echo 'Vous avez coché la bonne réponse : '. $resultats[$key-1]['reponse'] . '<br><br>' ;
-            }
-            else {
-            
-            echo 'Vous n\'avez pas coché la bonne réponse, c\'était : '. $resultats[$key-1]['reponse']. '<br><br>' ;
-    } ?></p><?php
-}
-            ?> 
+                <?php foreach($value['reponse'] as $cle => $reponse) { 
+                    if( $reponse['numero_reponse'] == $value['reponse_u'] AND $reponse['vrai'] == true) { ?>
+
+                    <li style="color:green" > <?php echo $reponse['reponse']?> </li> <?php
+
+                }
+                elseif( $reponse['numero_reponse'] == $value['reponse_u']) { ?>
+
+                    <li style="color:red" > <?php echo $reponse['reponse']?> </li> <?php
+                }
+                else { ?>
+
+                    <li > <?php echo $reponse['reponse']?> </li> <?php
+                }
+            } ?> <hr/><?php
+            } ?>
 
     </div>
 
