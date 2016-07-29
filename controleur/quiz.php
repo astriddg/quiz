@@ -8,22 +8,7 @@ include_once('modele/get_quizzes.php');
 $idQuiz=intval($_GET['quiz']);
 
 
-if (isset($_SESSION['quizzes'])) {
-	if(in_array($idQuiz, $_SESSION['quizzes'])) {
-	echo 'Vous avez déjà tenté votre chance à ce quiz';
-	}
-	else {
-		$questions = get_questions($idQuiz);
-		$nom = get_nom($idQuiz);
-		include_once('vue/quiz.php');
-	}
-}
-
-
-else {
-	$questions = get_questions($idQuiz);
-		$nom = get_nom($idQuiz);
-		include_once('vue/quiz.php');
-	}
 	
-
+$questions = get_questions($idQuiz);
+		$nom = get_nom($idQuiz);
+		include_once('vue/quiz.php');

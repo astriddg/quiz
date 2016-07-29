@@ -82,8 +82,9 @@ if (!isset($_SESSION['quizzes'])) {
 	$_SESSION['quizzes'] = [];
 }
 
+$resultat = array('nom du quiz' => $nom, 'résultat' => $pourcentage);
 // ici on rentre les informations de session pour s'assurer que l'utilisateur ne fait pas le quiz deux fois.
-array_push($_SESSION['quizzes'], $idQuiz);
+array_push($_SESSION['quizzes'], $resultat);
 
 
 include_once('vue/resultats.php');
