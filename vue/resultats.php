@@ -17,11 +17,12 @@
             ?>
             <p><strong><?php echo $value['question']; ?></strong></p>
             <p>
-                <ul>
 
-                <?php switch ($value['type']) {
-                        case '1rep':
-                            // si la question est à choix simple, alors on aura juste à comparer deux valeurs
+                    <?php switch ($value['type']) {
+                        case '1rep': // si la question est à choix simple, alors on aura juste à comparer deux valeurs
+                        ?>
+                        <ul> <?php
+
                             foreach($value['reponse'] as $cle => $reponse) { 
                                 if( $reponse['numero_reponse'] == $value['reponse_u'] AND $reponse['vrai'] == true) { ?>
                                     <!-- Si la réponse est bonnne, elle est en vert et en gras -->
@@ -40,10 +41,11 @@
 
                                     <li > <?php echo $reponse['reponse']?> </li> <?php
                                 }
-                            } ?> <hr/><?php
-                        break;
+                            } ?> </ul><hr/><?php
+                            break;
 
-                        case 'multirep': ?>
+                        case 'multirep': // Ici le système est exactement le même.
+                        ?>
                         <ul> <?php
 
                             foreach($value['reponse'] as $cle => $reponse) { 
@@ -64,45 +66,48 @@
                                 else { ?>
 
                                     <li > <?php echo $reponse['reponse']?> </li> <?php
-                            }
-                        } ?></ul> <hr/><?php
-                        break;
+                                }
+                            } ?></ul> <hr/><?php
+                            break;
 
-                        case 'nombre':
+                            case 'nombre': // Dans le cas d'un nombre, la réponse peut être verte (correct) ou rouge (incorrect)
+
                             if ($value['reponse'][0]['reponse'] == $value['reponse_u']) { ?>
-                                <li style="font-weight: bold; color:green" > <?php echo $value['reponse'][0]['reponse'] ?> </li> <?php
+                                <p style="font-weight: bold; color:green" > <?php echo $value['reponse'][0]['reponse'] ?> </p> <hr/><?php
                             }
                             else { ?>
-                                <li style="font-weight: bold; color:red" > <?php echo $value['reponse'][0]['reponse'] ?> </li> <?php
+                                <p style="font-weight: bold; color:red" > <?php echo $value['reponse'][0]['reponse'] ?> </p> <hr/><?php
                             }
-                        break;
+                            break;
 
-                        case 'ordre':
-                            if($value['reponse_u'] == 1) { 
-                                foreach($value['reponse'] as $cle => $reponse) {  ?>
-                                    <li style="font-weight: bold; color:green" > <?php echo $reponse['reponse'] ?> </li> <?php
+                            case 'ordre': // dans le cas de l'ordre, puisque la réponse dépend de toutes les options, la réponse peut être correcte ou incorrecte.
+                            ?>
+                            <ul> <?php
+                                if($value['reponse_u'] == 1) { 
+                                    foreach($value['reponse'] as $cle => $reponse) {  ?>
+                                        <li style="font-weight: bold; color:green" > <?php echo $reponse['reponse'] ?> </li> <?php
+                                    }
+
                                 }
-                                
+                                else { 
+                                    foreach($value['reponse'] as $cle => $reponse) {  ?>
+                                        <li style="font-weight: bold; color:red" > <?php echo $reponse['reponse'] ?> </li> <?php
+                                    }
+                                } ?></ul> <hr/><?php
+                                break;
+
+
                             }
-                            else { 
-                                foreach($value['reponse'] as $cle => $reponse) {  ?>
-                                    <li style="font-weight: bold; color:red" > <?php echo $reponse['reponse'] ?> </li> <?php
-                                }
-                            }
-                        break;
 
-                 
-                    }
-                    
 
-                } ?>
-            <a href="accueil.php" class="btn btn-success"> Retourner à l'accueil</a>
-            </div>
+                        } ?>
+                        <a href="accueil.php" class="btn btn-success"> Retourner à l'accueil</a>
+                    </div>
 
 
 
-        </body>
-        </html>
+                </body>
+                </html>
 
 
 <!-- 

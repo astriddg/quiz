@@ -8,7 +8,7 @@ function get_quizzes() { // pour récupérer la liste des quiz
 	return $quizzes;
 }
 
-function get_questions($idQuiz) {
+function get_questions($idQuiz) { // pour récupérer un certain quiz avec ses réponses
 	global $bdd;
 	$req = $bdd->prepare('SELECT numero_question, question, type 
 		FROM Questions WHERE numero_quiz=:idQuiz');

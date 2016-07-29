@@ -10,7 +10,7 @@
     <body>
     <div class="container">
     <div >
-  <h1>Les Quiz</h1>
+  <h1>Les Quiz</h1> <!-- La table des quiz -->
  <table style="margin:auto; border: 1px solid black">
 
 <?php
@@ -36,7 +36,7 @@ foreach($quizzes as $quiz)
 
 
 
-<h2>Les Quiz</h2> <?php
+<h2>Les Quiz</h2> <?php // la table des résultats 
 foreach($_SESSION['quizzes'] as $quiz)
 {
 ?>

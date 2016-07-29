@@ -9,6 +9,6 @@ $idQuiz=intval($_GET['quiz']);
 
 
 	
-$questions = get_questions($idQuiz);
-		$nom = get_nom($idQuiz);
-		include_once('vue/quiz.php');
+$questions = get_questions($idQuiz); // on récupère dans la bdd le nom du quiz ainsi que ses questions et réponses.
+$nom = get_nom($idQuiz);
+include_once('vue/quiz.php');

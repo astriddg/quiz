@@ -34,7 +34,7 @@ for ($i=0; $i<count($reponses_u); $i++) {
 			$nombreReponses[]=count($reponses[$i]['reponse']);
 
 		break;
-		case 'nombre':
+		case 'nombre': // dans le cas d'un nombre à choisir, c'est tout bête, si le nombre correspond à la réponse, on a un point.
 			if ($reponses_u[$i+1] == $reponses[$i]['reponse'][0]) {
 				$valide[]=1;
 				$nombreReponses[]=1;
@@ -44,7 +44,7 @@ for ($i=0; $i<count($reponses_u); $i++) {
 				$nombreReponses[]=1;
 			}
 		break;
-		case 'ordre':
+		case 'ordre': // dans le cas de l'ordre, c'est strict, ou bien l'ordre correspond exactement, dans ce cas on a un point, ou alors on n'a rien
 			$reponses_u[$i+1] = explode(',', $reponses_u[$i+1]);
 			if ($reponses_u[$i+1] == $reponses[$i]['reponse']) {
 				$valide[]=1;
@@ -78,13 +78,13 @@ foreach($questions as $key => $value) {
 	$questions[$key]['reponse_u'] = $reponses_u[$key+1];
 }
 
-if (!isset($_SESSION['quizzes'])) {
+if (!isset($_SESSION['quizzes'])) { 
 	$_SESSION['quizzes'] = [];
 }
 
-$resultat = array('nom du quiz' => $nom, 'résultat' => $pourcentage);
-// ici on rentre les informations de session pour s'assurer que l'utilisateur ne fait pas le quiz deux fois.
-array_push($_SESSION['quizzes'], $resultat);
+$resultat = array('nom du quiz' => $nom, 'résultat' => $pourcentage); // on crée la variable qui permettra de stocker les résultats des quiz.
+
+array_push($_SESSION['quizzes'], $resultat); // et on rentre ces résultats dans une variable session.
 
 
 include_once('vue/resultats.php');
