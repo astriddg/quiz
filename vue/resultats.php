@@ -101,7 +101,7 @@
 
 
                         } ?>
-                        <a href="accueil.php" class="btn btn-success"> Retourner à l'accueil</a>
+                        <a href="index.php" class="btn btn-success"> Retourner à l'accueil</a>
                     </div>
 
 

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: Jul 29, 2016 at 11:27 AM
+-- Generation Time: Jul 31, 2016 at 03:08 PM
 -- Server version: 5.5.42
 -- PHP Version: 7.0.0
 
@@ -150,7 +150,7 @@ INSERT INTO `Reponses` (`id`, `numero_quiz`, `numero_question`, `numero_reponse`
 (63, 1, 9, 3, 'Birmingham', 0),
 (64, 1, 9, 4, 'Cambridge', 1),
 (65, 1, 9, 5, 'Cardiff', 0),
-(66, 1, 10, 1, '52%', 1),
+(66, 1, 10, 1, '52', 1),
 (67, 1, 11, 1, 'Angleterre', 1),
 (68, 1, 11, 2, 'Pays de Galles', 1),
 (69, 1, 11, 3, 'Irelande du Nord', 1),

@@ -40,13 +40,13 @@ function get_questions_vrais($idQuiz) { // pour récupérer les questions avec l
 	$retour=array(); // on crée le tableau dans lequel on va tout stocker.
 	while ($questions = $req->fetch()) // à chaque fois qu'on sort une question, on crée une ligne du tableau avec la question etles réponses
 	{
-		$req_reponses = $bdd->prepare('SELECT numero_reponse FROM Reponses WHERE numero_quiz=:idQuiz AND numero_question=:idQuestion AND vrai=1'); // requête PDO pour avoir les réponses
+		$req_reponses = $bdd->prepare('SELECT numero_reponse, reponse FROM Reponses WHERE numero_quiz=:idQuiz AND numero_question=:idQuestion AND vrai=1'); // requête PDO pour avoir les réponses
 		$req_reponses->bindParam(':idQuiz', $idQuiz, PDO::PARAM_INT);
 		$req_reponses->bindParam(':idQuestion', $questions['numero_question'], PDO::PARAM_INT);
 		$req_reponses->execute();
 
 		// On fait un tabelau avec la question et les réponses.
-		$retour[] = array('numero_question' => $questions['numero_question'], 'type' => $questions['type'], 'reponse' => $req_reponses->fetchAll(PDO::FETCH_COLUMN, 0));		
+		$retour[] = array('numero_question' => $questions['numero_question'], 'type' => $questions['type'], 'rep' => $req_reponses->fetchAll(), 'reponse' => $req_reponses->fetchAll());		
 		$req_reponses->closeCursor();
 	};
 
@@ -60,8 +60,9 @@ function get_nom($idQuiz) { // pour récupérer les noms des quiz
 	$req->bindParam(':idQuiz', $idQuiz, PDO::PARAM_INT);
 	$req->execute();
 	$nom = $req->fetch()[0];
-	return $nom;
 	$req ->closeCursor();
+	return $nom;
+	
 }
 
 function get_reponses_vraies($idQuiz) { // Pour récupérer les bonnes réponses

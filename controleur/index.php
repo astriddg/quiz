@@ -7,3 +7,4 @@ $quizzes = get_quizzes();
 
 
 include_once('vue/index.php');
+

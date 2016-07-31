@@ -56,7 +56,7 @@
                     break;
                 }}
         ?>
-        <input type="submit" value="Valider" />
+        <input type="submit" id="valider" value="Valider" />
                 
 
 
@@ -79,6 +79,16 @@ $(function() { // cette fonction permet à l'utilisateur d'ordonner la liste pui
      
     $('#results').val($( "#sortable" ).sortable("toArray"));
 }); 
+
+    $('#valider').click(function() {
+      checked = $("input[type=checkbox]:checked").length;
+
+      if(!checked) {
+        alert("You must check at least one checkbox.");
+        return false;
+      }
+
+    });
 });
 
 var ul = document.querySelector('ul'); // ce code permet de randomiser la liste (pour qu'elle n'apparaisse pas toujours dans le bon ordre).
