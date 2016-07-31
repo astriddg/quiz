@@ -60,8 +60,9 @@ function get_nom($idQuiz) { // pour récupérer les noms des quiz
 	$req->bindParam(':idQuiz', $idQuiz, PDO::PARAM_INT);
 	$req->execute();
 	$nom = $req->fetch()[0];
-	return $nom;
 	$req ->closeCursor();
+	return $nom;
+
 }
 
 function get_reponses_vraies($idQuiz) { // Pour récupérer les bonnes réponses
